@@ -104,7 +104,12 @@ function HashTable() {
 }
 
 function put(data) {
-  var pos = this.betterHash(data); this.table[pos] = data;
+  var pos = this.betterHash(data); 
+  this.table[pos] = data;
+}
+
+function get(key) {
+  return this.table[this.betterHash(key)];
 }
 
 var someNames = ["David", "Jennifer", "Donnie", "Raymond",
