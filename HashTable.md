@@ -62,7 +62,7 @@ for (var i = 0; i < someNames.length; ++i) {
 hTable.showDistro();
 
 ```
-Here is the output from Example 8-1:
+Here is the output:
    * 35: Cynthia
    * 45: Clayton
    * 57: Donnie
@@ -169,5 +169,5 @@ for (var i = 0; i < students.length; ++i) {
 hTable.showDistro();
 ```
 If you run this by `getHash()` it will go in collision again, whereas `betterHash()` function found reliable.
-The lesson here is obvious: `betterHash()`` is the superior hashing function for strings and for integers.
+The lesson here is obvious: `betterHash()` is the superior hashing function for strings and for integers.
 
