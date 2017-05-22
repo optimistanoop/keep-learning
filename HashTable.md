@@ -33,33 +33,45 @@ function. Also, if the keys are random integers, then the hash function should m
 In many applications, the keys are strings. Choosing a hash function to work with string keys proves to be more difficult and should be chosen carefully.
 
 A simple hash function that at first glance seems to work well is to sum the ASCII value of the letters in the key. The hash value is then that sum modulo the array size. Here is the definition for this simple hash function:
-function simpleHash(data) {
 ```javascipt
-var total = 0;
-for (var i = 0; i < data.length; ++i) {
-          total += data.charCodeAt(i);
-   }
-return total % this.table.length; 
+function simpleHash(data) {
+ var total = 0;
+ for (var i = 0; i < data.length; ++i) {
+           total += data.charCodeAt(i);
+ }
+ return total % this.table.length; 
 }
 ```
 We can finish up this first attempt at the HashTable class with definitions for put() and showDistro(), which place the data in the hash table and display the data from the hash table respectively. Here is the complete class definition:
-function HashTable() { this.table = new Array(137); this.simpleHash = simpleHash; this.showDistro = showDistro; this.put = put;
 ```javascipt
-//this.get = get;
+function HashTable() { 
+ this.table = new Array(137); 
+ this.simpleHash = simpleHash; 
+ this.showDistro = showDistro; 
+ this.put = put;
+ //this.get = get;
 }
+
 function put(data) {
-var pos = this.simpleHash(data); this.table[pos] = data;
+ var pos = this.simpleHash(data); 
+ this.table[pos] = data;
 }
+
 function simpleHash(data) {
-var total = 0;
-for (var i = 0; i < data.length; ++i) {
+ var total = 0;
+ for (var i = 0; i < data.length; ++i) {
           total += data.charCodeAt(i);
-       }
-return total % this.table.length; }
+ }
+ return total % this.table.length; 
+}
+
 function showDistro() { varn=0;
-for (var i = 0; i < this.table.length; ++i) { if (this.table[i] != undefined) {
-print(i + ": " + this.table[i]); }
-} }
+ for (var i = 0; i < this.table.length; ++i) { 
+  if (this.table[i] != undefined) {
+   print(i + ": " + this.table[i]); 
+  }
+ } 
+}
 ```
 Example 8-1 demonstrates how the simpleHash() function works. Example 8-1. Hashing using a simple hash function
 load("HashTable.js");
