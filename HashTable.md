@@ -30,8 +30,7 @@ function HashTable() {
  * Choosing a hash function to work with string keys proves to be more difficult and should be chosen carefully.
  * A get hash function that at first glance seems to work well is to sum the ASCII value of the letters in the key.
  
-```javascipt
-
+```javascript
 function getHash(data) {
   var total = 0;
   for (var i = 0; i < data.length; ++i) {
@@ -117,15 +116,16 @@ htable.showDistro();
 
 ```
 The result of running this program is:
-    * 17: Cynthia
-    * 25: Donnie
-    * 30: Mike
-    * 33: Jennifer
-    * 37: Jonathan
-    * 57: Clayton
-    * 65: David
-    * 66: Danny
-    * 99: Raymond
+  * 17: Cynthia
+  * 25: Donnie
+  * 30: Mike
+  * 33: Jennifer
+  * 37: Jonathan
+  * 57: Clayton
+  * 65: David
+  * 66: Danny
+  * 99: Raymond
+    
 All nine names are now present and accounted for.
 
 ## Hashing Integer Keys
@@ -145,6 +145,7 @@ function genStuData(arr) {
     arr[i] = num;
   }
 }
+
 ```
 
 >The `getRandomInt()` function allows us to specify a maximum and minimum random number. For a set of student grades, it is reasonable to say that the minimum grade is 50 and the maximum grade is 100.
