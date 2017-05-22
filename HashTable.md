@@ -76,21 +76,23 @@ function showDistro() { varn=0;
 Example 8-1 demonstrates how the simpleHash() function works. Example 8-1. Hashing using a simple hash function
 load("HashTable.js");
 ```javascipt
-var someNames = ["David", "Jennifer", "Donnie", "Raymond",
-"Cynthia", "Mike", "Clayton", "Danny", "Jonathan"]; var hTable = new HashTable();
-for (var i = 0; i < someNames.length; ++i) { hTable.put(someNames[i]);
+var someNames = ["David", "Jennifer", "Donnie", "Raymond", "Cynthia", "Mike", "Clayton", "Danny", "Jonathan"]; 
+var hTable = new HashTable();
+for (var i = 0; i < someNames.length; ++i) { 
+ hTable.put(someNames[i]);
 }
 hTable.showDistro();
 ```
 Here is the output from Example 8-1:
-    35: Cynthia
-    45: Clayton
-    57: Donnie
-    77: David
-    95: Danny
-    116: Mike
-    132: Jennifer
-    134: Jonathan
+   * 35: Cynthia
+   * 45: Clayton
+   * 57: Donnie
+   * 77: David
+   * 95: Danny
+   * 116: Mike
+   * 132: Jennifer
+   * 134: Jonathan
+    
 The simpleHash() function computes a hash value by summing the ASCII value of each name using the JavaScript function charCodeAt() to return a character’s ASCII value. The put() function receives the array index value from the simpleHash() function and stores the data element in that position. The showDistro() function displays where the names are actually placed into the array using the hash function. As you can see, the data is not particularly evenly distributed. The names are bunched up at the beginning and at the end of the array.
 There is an even bigger problem than just the uneven distribution of names in the array, however. If you pay close attention to the output, you’ll see that not all the names in the original array of names are displayed. Let’s investigate further by adding a print() statement to the simpleHash() function:
 ```javascipt
