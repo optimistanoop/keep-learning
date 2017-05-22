@@ -126,3 +126,76 @@ When we run the program again, we see the following output:
     134: Jonathan
     
 The problem is now apparent—the strings "Clayton" and "Raymond" hash to the same value, causing a collision. Because of the collision, only "Clayton" is stored in the hash table. We can improve our hash function to avoid such collisions, as discussed in the next section.
+
+## A Better Hash Function
+
+To avoid collisions, you first need to make sure the array you are using for the hash table is sized to a prime number. This is necessary due to the use of modular arithmetic in computing the key. The size of the array needs to be greater than 100 in order to more evenly disperse the keys in the table. Through experimentation, we found that the first prime number greater than 100 that didn’t cause collisions for the data set used in Example 8-1 is 137. When smaller prime numbers close to 100 were used, there were still collisions in the data set.
+
+After properly sizing the hash table, the next step to avoiding hashing collisions is to compute a better hash value. An algorithm known as Horner’s method does the trick. Without getting too deep into the mathematics of the algorithm, our new hash function still works by summing the ASCII values of the characters of a string, but it adds a step by multiplying the resulting total by a prime constant. Most algorithm textbooks suggest a small prime number, such as 31, but for our set of names 31 didn’t work; however, 37 worked without causing collisions.
+
+We now present a new, better hash function utilizing Horner’s method:
+```javascript
+function betterHash(string, arr) {
+const H = 37;
+var total = 0;
+for (var i = 0; i < string.length; ++i) {
+          total += H * total + string.charCodeAt(i);
+       }
+       total = total % arr.length;
+return parseInt(total); 
+}
+```
+
+Example 8-2 contains the current definition of the HashTable class. Example 8-2. The HashTable class with the betterHash() 
+```javascript
+function
+function HashTable() { this.table = new Array(137); this.simpleHash = simpleHash; this.betterHash = betterHash; this.showDistro = showDistro; this.put = put;
+//this.get = get;
+}
+function put(data) {
+var pos = this.betterHash(data); this.table[pos] = data;
+}
+function simpleHash(data) {
+var total = 0;
+for (var i = 0; i < data.length; ++i) {
+      total += data.charCodeAt(i);
+   }
+   print("Hash value: " + data + " -> " + total);
+return total % this.table.length; }
+function showDistro() { varn=0;
+for (var i = 0; i < this.table.length; ++i) { if (this.table[i] != undefined) {
+print(i + ": " + this.table[i]); }
+} }
+function betterHash(string) {
+const H = 37;
+var total = 0;
+for (var i = 0; i < string.length; ++i) {
+      total += H * total + string.charCodeAt(i);
+   }
+total = total % this.table.length; if(total<0){
+total += this.table.length-1; }
+return parseInt(total); }
+```
+Notice that the put() function is now using betterHash() rather than simpleHash(). The program in Example 8-3 tests our new hash function.
+
+Example 8-3. Testing the betterHash() function
+load("HashTable.js");
+```javascript
+var someNames = ["David", "Jennifer", "Donnie", "Raymond",
+"Cynthia", "Mike", "Clayton", "Danny", "Jonathan"]; var hTable = new HashTable();
+for (var i = 0; i < someNames.length; ++i) { hTable.put(someNames[i]);
+}
+htable.showDistro();
+```
+The result of running this program is:
+    17: Cynthia
+    25: Donnie
+    30: Mike
+    33: Jennifer
+    37: Jonathan
+    57: Clayton
+    65: David
+    66: Danny
+    99: Raymond
+All nine names are now present and accounted for.
+
