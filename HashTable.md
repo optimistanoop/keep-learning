@@ -92,7 +92,9 @@ return total % this.table.length; }
 ```
 When we run the program again, we see the following output:
     Hash value: David -> 488
+    
     Hash value: Jennifer -> 817
+    
     Hash value: Donnie -> 605
     Hash value: Raymond -> 730
     Hash value: Cynthia -> 720
