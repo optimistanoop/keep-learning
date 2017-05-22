@@ -1,4 +1,8 @@
-Hashing is a common technique for storing data in such a way that the data can be inserted and retrieved very quickly. Hashing uses a data structure called a hash table. Although hash tables provide fast insertion, deletion, and retrieval, they perform poorly for operations that involve searching, such as finding the minimum and maximum values in a data set. For these operations, other data structures such as the binary search tree are more appropriate. We’ll learn how to implement a hash table in this chapter and learn when it’s appropriate to use hashing as a data storage and retrieval technique.
+## Introduction
+
+ * Hash tables provide fast insertion, deletion, and retrieval.
+ * Hash tables perform poorly for searching, eg- finding the minimum and maximum values in a data set. 
+ * For searching, finding the minimum and maximum values, binary search tree is more appropriate.
 
 ## An Overview of Hashing
 The hash table data structure is designed around an array. The array consists of elements 0 through some predetermined size, though we can increase the size when necessary. Each data element is stored in the array based on an associated data element called the key, which is similar to the concept of the key we examined with the dictionary data structure. To store a piece of data in a hash table, the key is mapped into a number in the range of 0 through the hash table size, using a hash function.
