@@ -50,6 +50,7 @@ All the best. Keep learning.
 
 * ### The function model_inputs is implemented correctly.
 >model_inputs has correctly defined the placeholder tensors for real input, z input and the learning rate.
+
 	* Real input images placeholder with rank 4 using image_width, image_height, and image_channels.
 	* Z input placeholder with rank 2 using z_dim.
 	* Learning rate placeholder with rank 0.
