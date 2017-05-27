@@ -1,8 +1,8 @@
 # Problems
-1- dimension of image in D & G
+1- Dimension of image in D & G
 2- Language
 3- Format
-4- alpha 
+4- Alpha 
 
 ## Review Note
 
@@ -22,7 +22,7 @@
    The function discriminator is implemented correctly.
    
 
-2- descriminator -
+  2- The function discriminator is implemented correctly.
 
   Required: This is a good start however I have a few suggestions for improvement :
 

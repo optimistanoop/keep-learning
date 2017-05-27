@@ -26,17 +26,17 @@ GANs are different as they run 2 optimization algorithms at a time (G & D).
 * Own implementation of loss functions
 * people forget to use Numerically stable version of cross entropy where loss is computed using logits
   levels to be 0.9 for 1 and 0 for 0. (This is GAN specific approach to avoid extreme prediction and label smoothing strategy used to regularize normal classifier)
-	this helps descriminator to generalized better and avoid making extreme predictions.
+	this helps discriminator to generalized better and avoid making extreme predictions.
 
 ## scaling up GAN for large image
-* we use convolutional Networks , they replace some of the matrics multipliers in normal nutral Networks with convolutions
-* we can replace matrics multiplier in GAN with convolutions
+* we use convolutional Networks , they replace some of the matrix multipliers in normal nural networks with convolutions
+* we can replace matrix multiplier in GAN with convolutions
 
 * for inputs to generator we use random vector z, mini batch of this vector form matrix, convolution expects many batch to be 4d tensors for input z (axis for feature maps and width and height axis) to get the random input in this format we use reshape op near the start of generator.
 
-* usually convolution net change the shape of feature map as we move through the Network, the input to convolution net is very tall and wide image with just 3 feature maps (the red blue and green) , after applying pooling several times, we end up with very short and narrow feature maps, thats all heppens when we use classifier convolutional net
+* usually convolution net change the shape of feature map as we move through the Network, the input to convolution net is very tall and wide image with just 3 feature maps (the red blue and green) , after applying pooling several times, we end up with very short and narrow feature maps, thats all happens when we use classifier convolutional net
 
-* when we use a convolutional net as generator net, most researhers think that we need to do opposite, we want to start of with small feature map and expand it to wide and tall image
+* when we use a convolutional net as generator net, most researchers think that we need to do opposite, we want to start of with small feature map and expand it to wide and tall image
  to do this we need to have an op that can increase the width and height of feature maps at every layer, so by using convolution transpose ops with stride >1 (this means when we move by 1 px in input map , we move by >1 px in output map)
 
  * Batch normalization is recommended to be used at every layer except output layer of generator and input layer of discriminator
@@ -124,7 +124,7 @@ Well Done !!! The train function has been implemented correctly. However, I woul
 
 	* Use of following functions : model_inputs(image_width, image_height, image_channels, z_dim),
 		model_loss(input_real, input_z, out_channel_dim) , model_opt(d_loss, g_loss, learning_rate, beta1)
-	* running optimiser and after each epoch printing loss values
+	* running optimizer and after each epoch printing loss values
 	* Use of show_generator_output to show generator output while training after every 100 batches.
 
 
