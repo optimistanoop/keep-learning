@@ -10,4 +10,4 @@
   *  learning_rate : Decrease it to a range of 0.0003 to 0.0002
   *  beta1 : Slightly decrease the value around 0.4 to 0.5
 
-*
+* Parameters are optimal.

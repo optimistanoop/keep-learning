@@ -1,3 +1,9 @@
+floyd login
+
+floyd init gan
+
+floyd run --gpu --env tensorflow-1.0 --mode jupyter --data R5KrjnANiKVhLWAkpXhNBe
+
 # Problems
 1- Dimension of image in D & G
 2- Language
