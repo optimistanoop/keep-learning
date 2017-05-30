@@ -1,11 +1,16 @@
 # Usage
 Requires the `requests` module, which you can either install globally or in a virtualenv.
-
-sudo python grading-assigner.py --auth-token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMTIxMywiZXhwIjoxNDk4MzIwODc0LCJ0b2tlbl90eXBlIjoiYXBpIn0.Rg_3BlD8_enxIesZwtm2R92d8n4iPOOMjAzVzVS5oog
-
-sudo python grading-assigner.py --auth-token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMTIxMywiZXhwIjoxNDk4NDU5MDY2LCJ0b2tlbl90eXBlIjoiYXBpIn0.jGrZ7BWd1UPykjkP8b8yYef-m1luaJHw9xVp-TAEqJw
-
 ```
+python grading-assigner.py --auth-token TOKEN
+
+sudo python Auto/grading-assigner.py --auth-token TOKEN
+
+curl -X GET --header 'Accept: application/json' --header 'Authorization: TOKEN' 'https://review-api.udacity.com/api/v1/submission_requests/344776/waits'
+
+
+curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: TOKEN' 'https://review-api.udacity.com/api/v1/submission_requests/344776/refresh'
+
+
 usage: grading-assigner.py [-h] [--auth-token TOKEN]
 
 Poll the Udacity reviews API to claim projects to review.
