@@ -10,11 +10,13 @@ import time
 CERTS_URL = 'https://review-api.udacity.com/api/v1/me/certifications.json'
 ASSIGN_URL = 'https://review-api.udacity.com/api/v1/projects/{pid}/submissions/assign.json'
 REVIEW_URL = 'https://review.udacity.com/#!/submissions/{sid}'
+WAIT_URL = 'https://review-api.udacity.com/api/v1/submission_requests/{rid}/waits'
 REQUESTS_PER_SECOND = 1 # Please leave this alone.
 
 logging.basicConfig(format = '|%(asctime)s| %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+rid= "343573";
 
 def request_reviews(token):
     headers = {'Authorization': token, 'Content-Length': '0'}
@@ -26,10 +28,14 @@ def request_reviews(token):
     project_ids = [cert['project']['id'] for cert in certs if cert['status'] == 'certified']
 
     logger.info("PIDs: {}".format(str(project_ids)))
-    logger.info("Check for process...")
+    logger.info(".....")
 
     for pid in itertools.cycle(project_ids):
         #logger.info("polling again for submissions")
+        wait_resp = requests.get(WAIT_URL.format(rid=rid), headers=headers)
+        waits = wait_resp.json()
+        waitarr = [wait['position'] for wait in waits]
+        #logger.info("wait: " + waitarr[0])
         resp = requests.post(ASSIGN_URL.format(pid = pid), headers=headers)
         if resp.status_code == 201:
             submission = resp.json()
@@ -39,7 +45,7 @@ def request_reviews(token):
             logger.info("A process found!")
             logger.info("View it here: " + REVIEW_URL.format(sid = submission['id']))
             logger.info("=================================================")
-            logger.info("Check for Process...")
+            logger.info("......")
 
         elif resp.status_code == 404:
             logger.debug("{} returned {}: No process available."
@@ -51,7 +57,7 @@ def request_reviews(token):
         else:
             resp.raise_for_status()
 
-        time.sleep(5.0 / REQUESTS_PER_SECOND)
+        time.sleep(1.0 / REQUESTS_PER_SECOND)
 
 
 if __name__=="__main__":
